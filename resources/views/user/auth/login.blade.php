@@ -38,6 +38,12 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+            &nbsp;&nbsp;
+            @if (Route::has('admin.login'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('admin.login') }}">
+                    Admin Login
+                </a>
+            @endif
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
