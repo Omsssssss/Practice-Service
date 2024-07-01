@@ -51,23 +51,43 @@
                 <span class="ml-3 text-xl text-gray-800">Langyangyan<span class="text-pink-500">.</span></span>
             </a>
 
-            <nav id="nav"
-                class="absolute top-0 left-0 z-50 flex flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
-                <div class="flex flex-col block w-full font-medium border-t border-gray-200 md:hidden">
-                    <a href="{{ route('login') }}" class="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-white bg-indigo-700 fold-bold">Login</a>
-                    <a href="{{ route('register') }}"
-                        class="w-full py-2 font-bold text-center text-pink-500">Register</a>
-                </div>
-            </nav>
+            <div class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
+                @if (Route::has('login'))
+                    <nav class="-mx-3 flex flex-1 justify-end">
+                        @auth('web')
+                            <a
+                                href="{{ url('/dashboard') }}"
+                                class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0"
+                            >
+                                Dashboard
+                            </a>
+                        @elseauth('admin')
+                            <a
+                                href="{{ url('/admin/dashboard') }}"
+                                class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0"
+                            >
+                                Admin Dashboard
+                            </a>
 
-            <div
-                class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
-                <a href="{{ route ('login') }}"
-                    class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">Login</a>
-                <a href="{{ route('register') }}"
-                    class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">
-                    Register
-                </a>
+                        @else
+                            <a
+                                href="{{ route('register') }}"
+                                class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0"
+                            >
+                                Register
+                            </a>
+
+                            @if (Route::has('login'))
+                                <a
+                                    href="{{ route('login') }}"
+                                    class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl"
+                                >
+                                    Log In
+                                </a>
+                            @endif
+                        @endauth
+                    </nav>
+                @endif
                 <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -mt-64 -ml-12 lg:block"
                     viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
